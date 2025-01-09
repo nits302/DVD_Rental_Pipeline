@@ -31,8 +31,9 @@ TABLES = [
     "store",
 ]
 
-OUTPUT_FOLDER = "D:\DE_study\Project\dvd_rental_pipeline\data"
+OUTPUT_FOLDER = os.getenv('DATA_OUTPUT_PATH', '/opt/airflow/data')
 # OUTPUT_FOLDER = "/tmp"
+# OUTPUT_FOLDER = "D:\DE_study\Project\dvd_rental_pipeline\data"
 
 try:
     output_date = sys.argv[1]

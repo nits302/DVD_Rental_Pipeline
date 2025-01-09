@@ -8,6 +8,8 @@ from validation import validate_input
 from dotenv import load_dotenv
 import tempfile
 
+"""Local"""
+
 # Load environment variables
 load_dotenv()
 
