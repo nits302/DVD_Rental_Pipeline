@@ -27,23 +27,22 @@ SNOWFLAKE_WAREHOUSE = os.getenv("SNOWFLAKE_WAREHOUSE")
 # Data path
 DATA_PATH = os.getenv("DATA_OUTPUT_PATH", "/opt/airflow/data")
 
+
 def get_column_definitions(csv_path):
-    """Đọc file CSV và trả về định nghĩa cột cho Snowflake"""
+    """Read CSV file and return column definition for Snowflake"""
     try:
         # Đọc CSV file
         df = pd.read_csv(csv_path)
-       
         # Dictionary mapping pandas dtypes to Snowflake types
         dtype_mapping = {
             'int64': 'NUMBER',
-            'float64': 'FLOAT', 
+            'float64': 'FLOAT',
             'object': 'VARCHAR',
             'bool': 'BOOLEAN',
             'datetime64[ns]': 'TIMESTAMP',
             'category': 'VARCHAR',
             'timedelta[ns]': 'VARCHAR'
         }
-       
         # Build column definitions
         columns = []
         for column, dtype in df.dtypes.items():
@@ -51,12 +50,11 @@ def get_column_definitions(csv_path):
             column_name = f'"{column}"' if any(c in column for c in ' ,-()') else column
             snowflake_type = dtype_mapping.get(str(dtype), 'VARCHAR')
             columns.append(f"{column_name} {snowflake_type}")
-           
         return ',\n    '.join(columns)
-   
     except Exception as e:
         print(f"Error analyzing CSV structure: {e}")
         raise
+
 
 def load_data_to_snowflake(folder_name):
     """Load data from MinIO to Snowflake"""

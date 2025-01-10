@@ -1,0 +1,20 @@
+dbt_snowflake:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: wb59819.ap-southeast-1 # Thay bằng account ID của bạn
+
+      # Authentication
+      user: nmtin123 # Thay bằng username của bạn
+      password: Minhtin123 # Thay bằng password của bạn
+
+      # Resource config
+      role: ACCOUNTADMIN # Role có quyền truy cập database
+      warehouse: DVD_RENTAL_DWH # Warehouse để chạy queries
+      database: DVD_RENTAL
+      schema: PUBLIC
+
+      # Performance config
+      threads: 4
+      client_session_keep_alive: False

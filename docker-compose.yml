@@ -18,6 +18,7 @@ x-airflow-common: &airflow-common
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ${AIRFLOW_PROJ_DIR:-.}/scripts:/opt/airflow/scripts
+    - ${AIRFLOW_PROJ_DIR:-.}/dbt_snowflake:/opt/airflow/dbt_snowflake
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data:rw
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
@@ -277,12 +278,15 @@ services:
     depends_on:
       - postgres
     environment:
-      - SUPERSET_SECRET_KEY=your_secret_key
-      - POSTGRES_DB=superset
-      - POSTGRES_USER=superset
-      - POSTGRES_PASSWORD=superset
+      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
+      - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
+      - SNOWFLAKE_USER=${SNOWFLAKE_USER}
+      - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
+      - SNOWFLAKE_DATABASE=${SNOWFLAKE_DATABASE}
+      - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
+      - SNOWFLAKE_ROLE=${SNOWFLAKE_ROLE}
     volumes:
-      - ./superset_config.py:/app/pythonpath/superset_config.py
+      - ./superset/superset_config.py:/app/pythonpath/superset_config.py
       - superset_home:/app/superset_home
     networks:
       - de_network
@@ -293,7 +297,8 @@ services:
     depends_on:
       - superset
     command: >
-      bash -c "superset db upgrade &&
+      bash -c "pip install snowflake-sqlalchemy==1.4.7 &&
+              superset db upgrade &&
               superset fab create-admin
                 --username admin
                 --firstname Superset
@@ -302,10 +307,7 @@ services:
                 --password admin &&
               superset init"
     environment:
-      - SUPERSET_SECRET_KEY=your_secret_key
-      - POSTGRES_DB=superset
-      - POSTGRES_USER=superset
-      - POSTGRES_PASSWORD=superset
+      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
     networks:
       - de_network
 

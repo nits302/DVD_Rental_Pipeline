@@ -1,0 +1,170 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: Customer dimension table
+    columns:
+      - name: customer_key
+        description: Surrogate key for customer
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Natural key from source system
+        tests:
+          - unique
+          - not_null
+      - name: email
+        description: Customer email address
+        tests:
+          - not_null
+      - name: is_active
+        description: Whether the customer is currently active
+        tests:
+          - accepted_values:
+              values: [true, false]
+
+  - name: dim_film
+    description: Film dimension table
+    columns:
+      - name: film_key
+        description: Surrogate key for film
+        tests:
+          - unique
+          - not_null
+      - name: film_id
+        description: Natural key from source system
+        tests:
+          - unique
+          - not_null
+      - name: title
+        description: Film title
+        tests:
+          - not_null
+      - name: rental_rate
+        description: Standard rental rate
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1000
+
+  - name: dim_staff
+    description: Staff dimension table
+    columns:
+      - name: staff_key
+        description: Surrogate key for staff
+        tests:
+          - unique
+          - not_null
+      - name: staff_id
+        description: Natural key from source system
+        tests:
+          - unique
+          - not_null
+      - name: email
+        description: Staff email address
+        tests:
+          - not_null
+      - name: store_id
+        description: Foreign key to store
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_store')
+              field: store_id
+
+  - name: dim_store
+    description: Store dimension table
+    columns:
+      - name: store_key
+        description: Surrogate key for store
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        description: Natural key from source system
+        tests:
+          - unique
+          - not_null
+      - name: manager_first_name
+        description: Store manager's first name
+        tests:
+          - not_null
+      - name: manager_last_name
+        description: Store manager's last name
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: Date dimension table
+    columns:
+      - name: date_key
+        description: Surrogate key for date
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: Full date value
+        tests:
+          - unique
+          - not_null
+      - name: is_weekend
+        description: Whether the date is a weekend
+        tests:
+          - accepted_values:
+              values: [true, false]
+
+  - name: fact_rental
+    description: Rental fact table
+    columns:
+      - name: rental_key
+        description: Surrogate key for rental
+        tests:
+          - not_null
+      - name: rental_id
+        description: Natural key from source system
+        tests:
+          - not_null
+      - name: customer_key
+        description: Foreign key to dim_customer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+      - name: film_key
+        description: Foreign key to dim_film
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_film')
+              field: film_key
+      - name: store_key
+        description: Foreign key to dim_store
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_store')
+              field: store_key
+      - name: staff_key
+        description: Foreign key to dim_staff
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_staff')
+              field: staff_key
+      - name: rental_date_key
+        description: Foreign key to dim_date for rental date
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: payment_amount
+        description: Amount paid for the rental
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 1000

@@ -29,14 +29,14 @@ with DAG(
 
     extract_data = BashOperator(
         task_id="extract_data",
-        bash_command=f"python /opt/airflow/scripts/etl_data.py {output_name}",
+        bash_command=f"python /opt/airflow/scripts/extract_data.py {output_name}",
         dag=dag,
     )
     extract_data.doc_md = "Extract data and store locally as a CSV file"
 
     upload_to_minio = BashOperator(
         task_id="upload_to_minio",
-        bash_command=f"python /opt/airflow/scripts/upload_data_minio.py {output_name}",
+        bash_command=f"python /opt/airflow/scripts/load_to_data_lake.py {output_name}",
         dag=dag,
     )
     upload_to_minio.doc_md = "Upload the extracted CSV file to MinIO"
@@ -48,5 +48,17 @@ with DAG(
     )
     load_to_dwh.doc_md = "Load data from MinIO to Snowflake Data Warehouse"
 
-# Define task dependencies
-extract_data >> upload_to_minio >> load_to_dwh
+    dbt_run = BashOperator(
+        task_id="dbt_run",
+        bash_command="cd /opt/airflow/dbt_snowflake && dbt run",
+        dag=dag,
+    )
+
+    dbt_test = BashOperator(
+        task_id="dbt_test",
+        bash_command="cd /opt/airflow/dbt_snowflake && dbt test",
+        dag=dag,
+    )
+
+    # Define task dependencies
+    extract_data >> upload_to_minio >> load_to_dwh >> dbt_run >> dbt_test

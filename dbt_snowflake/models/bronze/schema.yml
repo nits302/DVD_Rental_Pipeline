@@ -1,0 +1,137 @@
+version: 2
+
+sources:
+  - name: raw
+    database: DVD_RENTAL
+    schema: PUBLIC
+    tables:
+      - name: actor
+        columns:
+          - name: actor_id
+          - name: first_name
+          - name: last_name
+          - name: last_update
+
+      - name: category
+        columns:
+          - name: category_id
+          - name: name
+          - name: last_update
+
+      - name: film
+        columns:
+          - name: film_id
+          - name: title
+          - name: description
+          - name: release_year
+          - name: language_id
+          - name: rental_duration
+          - name: rental_rate
+          - name: length
+          - name: replacement_cost
+          - name: rating
+          - name: last_update
+          - name: special_features
+          - name: fulltext
+
+      - name: film_category
+        columns:
+          - name: film_id
+          - name: category_id
+          - name: last_update
+
+      - name: film_actor
+        columns:
+          - name: actor_id
+          - name: film_id
+          - name: last_update
+
+      - name: inventory
+        columns:
+          - name: inventory_id
+          - name: film_id
+          - name: store_id
+          - name: last_update
+
+      - name: store
+        columns:
+          - name: store_id
+          - name: manager_staff_id
+          - name: address_id
+          - name: last_update
+
+      - name: staff
+        columns:
+          - name: staff_id
+          - name: first_name
+          - name: last_name
+          - name: address_id
+          - name: email
+          - name: store_id
+          - name: active
+          - name: username
+          - name: password
+          - name: last_update
+          - name: picture
+
+      - name: rental
+        columns:
+          - name: rental_id
+          - name: rental_date
+          - name: inventory_id
+          - name: customer_id
+          - name: return_date
+          - name: staff_id
+          - name: last_update
+
+      - name: payment
+        columns:
+          - name: payment_id
+          - name: customer_id
+          - name: staff_id
+          - name: rental_id
+          - name: amount
+          - name: payment_date
+
+      - name: customer
+        columns:
+          - name: customer_id
+          - name: store_id
+          - name: first_name
+          - name: last_name
+          - name: email
+          - name: address_id
+          - name: activebool
+          - name: create_date
+          - name: last_update
+          - name: active
+
+      - name: address
+        columns:
+          - name: address_id
+          - name: address
+          - name: address2
+          - name: district
+          - name: city_id
+          - name: postal_code
+          - name: phone
+          - name: last_update
+
+      - name: city
+        columns:
+          - name: city_id
+          - name: city
+          - name: country_id
+          - name: last_update
+
+      - name: country
+        columns:
+          - name: country_id
+          - name: country
+          - name: last_update
+
+      - name: language
+        columns:
+          - name: language_id
+          - name: name
+          - name: last_update

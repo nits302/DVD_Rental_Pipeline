@@ -32,7 +32,6 @@ TABLES = [
 ]
 
 OUTPUT_FOLDER = os.getenv('DATA_OUTPUT_PATH', '/opt/airflow/data')
-# OUTPUT_FOLDER = "/tmp"
 # OUTPUT_FOLDER = "D:\DE_study\Project\dvd_rental_pipeline\data"
 
 try:
@@ -74,7 +73,7 @@ def transform_data(df):
     """Perform basic transformations."""
     try:
         # Example transformations
-        df = df.dropna()  # Drop rows with missing values
+        # df = df.dropna()  # Drop rows with missing values
         # for col in df.select_dtypes(include=['object']).columns:
         #     df[col] = df[col].str.strip()  # Strip whitespace from strings
 
