@@ -191,11 +191,6 @@ The project implements a three-layer data architecture:
 ```bash
 dbt run
 ```
-
-<p align="center">
-  <img src="images/dbt.png" alt="Wallpaper">
-</p>
-
 ### Bronze Layer (Raw)
 
 - Raw data ingested directly from PostgreSQL
