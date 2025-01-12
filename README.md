@@ -22,19 +22,19 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
 - **Data Quality**: Automated testing with dbt
 
 ## Overview 
-# Database Schema
+### Database Schema
 
 <p align="center">
   <img src="images/dvdrental-schema.png" alt="Wallpaper">
 </p>
 
-# Dimensional Modeling
+### Dimensional Modeling
 
 <p align="center">
   <img src="images/dwh_schema.png" alt="Wallpaper">
 </p>
 
-# Report
+### Report
 
 <p align="center">
   <img src="images/dvdrental_report.png" alt="Wallpaper">
