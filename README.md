@@ -41,8 +41,8 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
 - PostgreSQL
 
 ## Project Structure
-```
 
+```shell
 dvd-rental-pipeline/
 ├── dags/ # Airflow DAG definitions
 ├── scripts/ # Python scripts for ETL operations
@@ -54,7 +54,7 @@ dvd-rental-pipeline/
 ├── data/ # Local data directory
 ├── logs/ # Application logs
 └── docker-compose.yml # Docker services configuration
-
+```
 ## Setup
 
 1. Clone the repository:
