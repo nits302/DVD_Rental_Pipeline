@@ -145,10 +145,6 @@ pip install -r requirements.txt
 4. Push to the branch
 5. Create a new Pull Request
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
 ## Environment Variables
 
 Required environment variables in `.env` file:
@@ -254,3 +250,7 @@ dbt test --select dim_customer
 - [dbt Documentation](https://docs.getdbt.com/)
 - [Snowflake Documentation](https://docs.snowflake.com/)
 - [MinIO Documentation](https://docs.min.io/)
+
+  ## 🚀 Video DEMO
+
+[Demo Project DVD Rental Pipeline](https://www.youtube.com/watch?v=__8EhETsx5Y)
