@@ -43,16 +43,26 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
 
 ```shell
 dvd-rental-pipeline/
-├── dags/ # Airflow DAG definitions
-├── scripts/ # Python scripts for ETL operations
-├── dbt_snowflake/ # dbt project files
-│ ├── models/ # Data transformation models
+├── dags/ 
+│ └── etl_pipeline.py # Main ETL pipeline DAG
+├── scripts/ 
+│ ├── extract_data.py # Extract data from PostgreSQL
+│ ├── load_to_data_lake.py # Upload data to MinIO
+│ ├── load_to_dwh.py # Load data to Snowflake (VM version)
+│ ├── load_dwh_snowflake.py # Load data to Snowflake (Local version)
+│ ├── etl_data_scd.py # SCD Type 2 implementation
+│ └── validation.py # Input validation utilities
+├── dbt_snowflake/
+│ ├── models/ #
 │ │ ├── bronze/ # Raw data models
 │ │ ├── silver/ # Cleaned data models
 │ │ └── gold/ # Business-ready models
-├── data/ # Local data directory
-├── logs/ # Application logs
-└── docker-compose.yml # Docker services configuration
+├── init-scripts/ # Initialization scripts
+│ └── restore-dvdrental.sh # Database restore script
+├── data
+├── docker-compose.yml 
+├── Dockerfile 
+└── requirements.txt
 ```
 ## Setup
 
