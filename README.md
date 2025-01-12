@@ -260,4 +260,4 @@ Key dimension and fact tables:
 
   ## 🚀 Video DEMO
 
-[Demo Project DVD Rental Pipeline](https://www.youtube.com/watch?v=__8EhETsx5Y)
+[Demo Project DVD Rental Pipeline](https://youtu.be/zW_cj4pZ0Lg)
