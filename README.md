@@ -89,7 +89,6 @@ dvd-rental-pipeline/
 ```
 git clone https://github.com/nits302/DVD_Rental_Pipeline.git
 cd dvd-rental-pipeline
-
 ```
 
 2. Create and configure environment variables:
@@ -104,6 +103,9 @@ cp .env.example .env
 ```bash
 docker-compose up -d
 ```
+<p align="center">
+  <img src="images/docker.png" alt="Wallpaper">
+</p>
 
 4. Initialize the database:
 
@@ -115,8 +117,6 @@ docker-compose up -d
 
 ```bash
 cd dbt_snowflake
-dbt deps
-dbt seed
 ```
 
 ## Pipeline Workflow
@@ -155,14 +155,6 @@ source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a new Pull Request
-
 ## Environment Variables
 
 Required environment variables in `.env` file:
@@ -193,6 +185,14 @@ SNOWFLAKE_WAREHOUSE=DVD_RENTAL_DWH
 
 The project implements a three-layer data architecture:
 
+```bash
+dbt run
+```
+
+<p align="center">
+  <img src="images/dbt.png" alt="Wallpaper">
+</p>
+
 ### Bronze Layer (Raw)
 
 - Raw data ingested directly from PostgreSQL
@@ -217,18 +217,9 @@ Key dimension and fact tables:
 - dim_date
 - fact_rental
 
-## Testing
-
-The project includes automated tests using dbt:
-
-```bash
-# Run all tests
-cd dbt_snowflake
-dbt test
-
-# Run specific test
-dbt test --select dim_customer
-```
+<p align="center">
+  <img src="images/snowflake.png" alt="Wallpaper">
+</p>
 
 ## Monitoring
 
