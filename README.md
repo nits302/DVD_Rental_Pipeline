@@ -21,6 +21,25 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
 - **Orchestration**: Apache Airflow for pipeline orchestration and scheduling
 - **Data Quality**: Automated testing with dbt
 
+## Overview 
+# Database Schema
+
+<p align="center">
+  <img src="images/dvdrental-schema.png" alt="Wallpaper">
+</p>
+
+# Dimensional Modeling
+
+<p align="center">
+  <img src="images/dwh_schema.png" alt="Wallpaper">
+</p>
+
+# Report
+
+<p align="center">
+  <img src="images/dvdrental_report.png" alt="Wallpaper">
+</p>
+
 ## Prerequisites
 
 - Docker and Docker Compose
@@ -32,7 +51,6 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
 ## Tech Stack
 
 - Apache Airflow 2.9.0
-- Apache Spark 3.5.0
 - MinIO
 - Snowflake
 - dbt 1.7.3
