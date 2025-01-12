@@ -1,15 +1,12 @@
-# DVD Rental Pipeline
+# DVD Rental Pipeline with Docker, Airflow, Snowflake and dbt
 
 A modern data engineering project that implements an end-to-end ETL pipeline for the DVD Rental database using Apache Airflow, MinIO, Snowflake, and dbt.
 
 ## Architecture
 
-mermaid
-graph LR
-A[PostgreSQL] --> B[Apache Airflow]
-B --> C[MinIO Data Lake]
-C --> D[Snowflake DWH]
-D --> E[dbt Transformations]
+<p align="center">
+  <img src="images/architecture.png" alt="Wallpaper">
+</p>
 
 ```
 
@@ -63,7 +60,7 @@ dvd-rental-pipeline/
 1. Clone the repository:
 
 ```
-git clone https://github.com/yourusername/dvd-rental-pipeline.git
+git clone https://github.com/nits302/DVD_Rental_Pipeline.git
 cd dvd-rental-pipeline
 
 ```
@@ -196,7 +193,6 @@ Key dimension and fact tables:
 - dim_staff
 - dim_date
 - fact_rental
-- fact_payment
 
 ## Testing
 
