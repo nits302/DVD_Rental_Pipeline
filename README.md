@@ -8,7 +8,6 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
   <img src="images/architecture.png" alt="Wallpaper">
 </p>
 
-```
 
 ## Features
 
