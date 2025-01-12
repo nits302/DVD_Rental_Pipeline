@@ -8,7 +8,6 @@ A modern data engineering project that implements an end-to-end ETL pipeline for
   <img src="images/architecture.png" alt="Wallpaper">
 </p>
 
-
 ## Features
 
 - **Data Extraction**: Daily extraction of DVD rental data from PostgreSQL source
@@ -137,6 +136,10 @@ The pipeline can be triggered manually through Airflow UI or will run automatica
 2. Login with default credentials
 3. Locate the `etl_pipeline` DAG
 4. Trigger the pipeline manually or wait for scheduled run
+
+<p align="center">
+  <img src="images/airflow.png" alt="Wallpaper">
+</p>
 
 ## Development
 
