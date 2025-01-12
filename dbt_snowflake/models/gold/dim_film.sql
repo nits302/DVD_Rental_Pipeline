@@ -11,6 +11,7 @@ SELECT
     description,
     release_year,
     language,
+    category,
     rental_duration,
     rental_rate,
     length,

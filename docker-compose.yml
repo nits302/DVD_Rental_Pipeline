@@ -270,46 +270,46 @@ services:
     networks:
       - de_network
 
-  superset:
-    image: apache/superset
-    container_name: superset
-    ports:
-      - "8088:8088"
-    depends_on:
-      - postgres
-    environment:
-      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
-      - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
-      - SNOWFLAKE_USER=${SNOWFLAKE_USER}
-      - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
-      - SNOWFLAKE_DATABASE=${SNOWFLAKE_DATABASE}
-      - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
-      - SNOWFLAKE_ROLE=${SNOWFLAKE_ROLE}
-    volumes:
-      - ./superset/superset_config.py:/app/pythonpath/superset_config.py
-      - superset_home:/app/superset_home
-    networks:
-      - de_network
+  # superset:
+  #   image: apache/superset
+  #   container_name: superset
+  #   ports:
+  #     - "8088:8088"
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
+  #     - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
+  #     - SNOWFLAKE_USER=${SNOWFLAKE_USER}
+  #     - SNOWFLAKE_PASSWORD=${SNOWFLAKE_PASSWORD}
+  #     - SNOWFLAKE_DATABASE=${SNOWFLAKE_DATABASE}
+  #     - SNOWFLAKE_WAREHOUSE=${SNOWFLAKE_WAREHOUSE}
+  #     - SNOWFLAKE_ROLE=${SNOWFLAKE_ROLE}
+  #   volumes:
+  #     - ./superset/superset_config.py:/app/pythonpath/superset_config.py
+  #     - superset_home:/app/superset_home
+  #   networks:
+  #     - de_network
 
-  superset-init:
-    image: apache/superset
-    container_name: superset-init
-    depends_on:
-      - superset
-    command: >
-      bash -c "pip install snowflake-sqlalchemy==1.4.7 &&
-              superset db upgrade &&
-              superset fab create-admin
-                --username admin
-                --firstname Superset
-                --lastname Admin
-                --email admin@superset.com
-                --password admin &&
-              superset init"
-    environment:
-      - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
-    networks:
-      - de_network
+  # superset-init:
+  #   image: apache/superset
+  #   container_name: superset-init
+  #   depends_on:
+  #     - superset
+  #   command: >
+  #     bash -c "pip install snowflake-sqlalchemy==1.4.7 &&
+  #             superset db upgrade &&
+  #             superset fab create-admin
+  #               --username admin
+  #               --firstname Superset
+  #               --lastname Admin
+  #               --email admin@superset.com
+  #               --password admin &&
+  #             superset init"
+  #   environment:
+  #     - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
+  #   networks:
+  #     - de_network
 
 networks:
   de_network:
