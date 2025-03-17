@@ -100,6 +100,7 @@ cp .env.example .env
 3. Build and start the Docker containers:
 
 ```bash
+docker build -t extending_image:latest .
 docker-compose up -d
 ```
 <p align="center">
